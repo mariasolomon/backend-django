@@ -1,9 +1,13 @@
 curl.exe -H 'Accept: application/json; indent=4' --user admin:admin http://127.0.0.1:8000/users/
+ python -m venv  B:\work\hockey\env
+.\env\Scripts\activate.bat
 
 django-admin startproject tutorial
 cd tutorial
 python manage.py startapp snippets
-python manage.py migrate  --> first time
+
+python manage.py createsuperuser --email admin@admin.admin --username admin
+
 python manage.py shell
 python manage.py runserver
 
@@ -15,17 +19,3 @@ https://www.django-rest-framework.org/tutorial/quickstart/
 serializers.Serializer peut etre optimisé en utilisant serializers.ModelSerializer, generation des types
  pour les champs de facon automatique et implementationbasique du create and update
  voir pk on arrive pas a demarrer le serveur(bug dans les settings)
-
-07/08
-j'ai testé plusieurs applications dans un projet django
-On peut avoir plusieurs url.py qu'il faut inclure dans le url.py  global
-Il y a 4 façon differents pour faire le mapping entre le views et le model:
-    - En declarant des fct comme  dab  et en les incluant dans le urls.py en dur (pas la meilleure methode)
-    - En declarant @api_view(['GET', 'PUT', 'DELETE']) devant les fonctions et en vérifiant avec un if
-si request=GET...
-    - En heritant de APIView pour les classes , en définissant les methodes get_object, get, put, delete
-    - En héritant de mixins.ListModelMixin,
-                  mixins.CreateModelMixin,
-                  generics.GenericAPIView  qui fait touuuuuuuuut le boulot, c'est générique et réutilisable
-
-Next step : permissions et authentifications
