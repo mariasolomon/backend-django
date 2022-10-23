@@ -1,3 +1,5 @@
 cmd.txt
-*/__pycache__/
 django_env_1/
+.vscode
+/*/*/__pycache__/
+/*/*/uploads/

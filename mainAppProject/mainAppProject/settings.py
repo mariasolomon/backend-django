@@ -31,8 +31,6 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'location_field.apps.DefaultConfig',
-    'django_countries',
     'hockey.apps.HockeyConfig',
     'rest_framework',
     'django.contrib.admin',

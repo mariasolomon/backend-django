@@ -1,0 +1,5 @@
+MANUAL_PREFERENCES = ((1, 'Droitier'), (2, 'Gaucher'))
+PLAYER_ROLE = ((1, 'Allié droite'), (2,'Allié gauche'), (3,'Centre'), (4,'Défenseur droit'), (5,'Défenseur gauche'),  (6,'Goalkeeper'))
+TYPE_TIMETABLE = ((1, 'Entrainement'), (2, 'Match'))
+WEEK_DAY = ((1, 'Lundi'), (2, 'Mardi'), (3, 'Mercredi'), (4, 'Jeudi'), (5, 'Vendredi'), (6, 'Samedi'), (7, 'Dimanche'))
+SPECIAL_INFO = ((1, '(*) RDV 1h15 avant pour la séance'), (2, '(**) shooters sur convocation'), (3, 'HG = Hors Glace'))
