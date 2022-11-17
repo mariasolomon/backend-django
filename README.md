@@ -29,11 +29,11 @@ python manage.py createsuperuser
 ```
 Preapre the DB migrations
 ```bash
-python manage.py makemigrations mainAppProject
+python manage.py makemigrations hockey
 ```
 Migrate 
 ```bash
-python manage.py migrate
+python manage.py migrate hockey
 ```
 Run the project 
 ```bash
