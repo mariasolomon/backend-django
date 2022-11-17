@@ -1,8 +1,5 @@
 cmd.txt
 django_env_1/
 .vscode
-mainAppProject/mainAppProject/__pycache__/*
-mainAppProject/hockey/__pycache__/*
-mainAppProject/hockey/migrations/__pycache__/*
+*/__pycache__/*
 /*/*/uploads/
-*.pyc
