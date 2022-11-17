@@ -1,5 +1,9 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.pyc
+*$py.class
+
 cmd.txt
 django_env_1/
 .vscode
-*/__pycache__/*
-/*/*/uploads/
+uploads/
