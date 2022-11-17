@@ -1,12 +1,12 @@
 from django.contrib.auth.models import Group
 from rest_framework import serializers
-from hockey.models import Player, User, Team, Timetable, AbstractMoralEntity, Match, MatchResult, Partner
+from hockey.models import Player, User, Team, Timetable, AbstractMoralEntity, Match, MatchResult, Partner, Club
 
 class AbstractUserSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = User
         #model = User
-        fields = ['url', 'email', 'date_joined', 'first_name', 'last_name', 'is_active', 'groups']
+        fields = ['url', 'email', 'date_joined', 'first_name', 'last_name', 'groups']
 
 
 class PlayerSerializer(serializers.HyperlinkedModelSerializer):
@@ -35,10 +35,15 @@ class AbstractMoralEntitySerializer(serializers.HyperlinkedModelSerializer):
         model = AbstractMoralEntity
         fields = ['url', 'name', 'logo', 'link']
 
+class ClubSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Club
+        fields = ['url', 'name', 'city']
+
 class MatchSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Match
-        fields = ['url', 'team', 'club', 'dateTime', 'atHome']
+        fields = ['url', 'team', 'club', 'opposingTeam', 'dateTime', 'atHome']
 
 class MatchResultSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:

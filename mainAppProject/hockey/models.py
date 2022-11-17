@@ -15,9 +15,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     first_name = models.CharField(_('Prenom'), max_length=30, blank=True)
     last_name = models.CharField(_('Nom'), max_length=30, blank=True)
     date_joined = models.DateTimeField(_('date joined'), auto_now_add=True)
-    is_active = models.BooleanField(_('Actif'), default=True)
     groups = models.ManyToManyField(Group, verbose_name=_("Groupes"))
-    #avatar = models.ImageField(upload_to='avatars/', null=True, blank=True)
 
     objects = UserManager()
 
@@ -64,14 +62,14 @@ class Player(models.Model):
 
 
 class Team(models.Model):
-    name = models.CharField(_("Nom de l'equipe"), max_length=30, blank=True)
+    name = models.CharField(_("Nom de l'equipe"), max_length=255, blank=True)
     code = models.IntegerField(_("Code de l'equipe"), blank=True, null=True)
     players = models.ManyToManyField(Player, verbose_name=_("Joueur"))
     photo = models.ImageField(upload_to='uploads/Team_files', blank=True, null=True)
-    captain = models.OneToOneField(Player, parent_link=True, on_delete=models.CASCADE, verbose_name=_("Capitaine "), related_name='captain', null=True)
-    assistant = models.OneToOneField(Player, parent_link=True, on_delete=models.CASCADE, verbose_name=_("Assistant"), related_name='assistant', null=True)
-    trainer = models.OneToOneField(Player, parent_link=True, on_delete=models.CASCADE,verbose_name=_("Entreneur"), related_name='trainer', null=True)
-    coach = models.OneToOneField(Player, parent_link=True, on_delete=models.CASCADE,verbose_name=_("Coach"), related_name='coach', null=True)
+    captain = models.ForeignKey(Player, on_delete=models.CASCADE, verbose_name=_("Capitaine "), related_name='captain', null=True)
+    assistant = models.ForeignKey(Player, on_delete=models.CASCADE, verbose_name=_("Assistant"), related_name='assistant', null=True)
+    trainer = models.ForeignKey(Player, on_delete=models.CASCADE,verbose_name=_("Entreneur"), related_name='trainer', null=True)
+    coach = models.ForeignKey(Player, on_delete=models.CASCADE,verbose_name=_("Coach"), related_name='coach', null=True)
     minAge = models.IntegerField(_("L'age minimal"), blank=True, null=True)
     maxAge = models.IntegerField(_("L'age maximal"), blank=True, null=True)
     
@@ -95,6 +93,7 @@ class Club(models.Model):
 class Match(models.Model):
     team = models.ForeignKey(Team, on_delete=models.CASCADE, verbose_name=_("Equipe")) 
     club = models.ForeignKey(Club, on_delete=models.CASCADE, verbose_name=_("Club")) 
+    opposingTeam = models.ForeignKey(Team, on_delete=models.CASCADE, verbose_name=_("Equipe adverse"), related_name='opposed_team', blank=True, null=True) 
     dateTime = models.DateTimeField(_('Date et heure du match'), blank=True, null=True)
     atHome = models.BooleanField(_('Match à la maison?'), default=True)
 
