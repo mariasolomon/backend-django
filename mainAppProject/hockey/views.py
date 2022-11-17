@@ -1,8 +1,8 @@
 from django.shortcuts import render
 from django.contrib.auth.models import Group
 from rest_framework import viewsets, permissions
-from hockey.serializers import PlayerSerializer, AbstractUserSerializer, GroupSerializer, TeamSerializer, TimetableSerializer, AbstractMoralEntitySerializer, MatchSerializer, MatchResultSerializer, PartnerSerializer, ClubSerializer
-from hockey.models import Player, Team, User, Timetable, AbstractMoralEntity, Match, MatchResult, Partner, Club
+from hockey.serializers import PlayerSerializer, AbstractUserSerializer, GroupSerializer, TeamSerializer, TimetableSerializer, AbstractMoralEntitySerializer, MatchSerializer, MatchResultSerializer, PartnerSerializer, ClubSerializer, RinkSerializer
+from hockey.models import Player, Team, User, Timetable, AbstractMoralEntity, Match, MatchResult, Partner, Club, Rink
 
 class AbstractUserViewSet(viewsets.ModelViewSet):
     """
@@ -61,4 +61,9 @@ class MatchResultViewSet(viewsets.ModelViewSet):
 class PartnerSerializerViewSet(viewsets.ModelViewSet):
     queryset = Partner.objects.all().order_by('-id') 
     serializer_class = PartnerSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+class RinkViewSet(viewsets.ModelViewSet):
+    queryset = Rink.objects.all().order_by('-id') 
+    serializer_class = RinkSerializer
     permission_classes = [permissions.IsAuthenticated]

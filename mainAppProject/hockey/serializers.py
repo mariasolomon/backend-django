@@ -1,6 +1,6 @@
 from django.contrib.auth.models import Group
 from rest_framework import serializers
-from hockey.models import Player, User, Team, Timetable, AbstractMoralEntity, Match, MatchResult, Partner, Club
+from hockey.models import Player, User, Team, Timetable, AbstractMoralEntity, Match, MatchResult, Partner, Club, Rink
 
 class AbstractUserSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
@@ -54,3 +54,8 @@ class PartnerSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Partner
         fields = ['url', 'moralEntity']
+
+class RinkSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Rink
+        fields = ['url', 'telephone', 'localisation', 'email', 'link' ]

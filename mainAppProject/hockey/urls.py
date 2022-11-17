@@ -12,3 +12,5 @@ router.register(r'clubs', views.ClubViewSet)
 router.register(r'matches', views.MatchViewSet)
 router.register(r'matchResults', views.MatchResultViewSet)
 router.register(r'partnerships', views.PartnerSerializerViewSet)
+router.register(r'rinks', views.RinkViewSet)
+
